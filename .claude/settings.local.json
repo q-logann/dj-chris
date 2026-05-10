@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/logan/Downloads/dj-christina/.claude)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm install *)",
+      "Bash(git add *)"
+    ]
+  }
+}
