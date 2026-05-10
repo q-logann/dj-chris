@@ -7,34 +7,75 @@ type Props = {
   why: string;
   ctaHref?: string;
   ctaLabel?: string;
+  /** Optional track number — "01" / "02" — printed in italic serif at the
+   *  top of the card to make the grid feel like a setlist. */
+  trackNumber?: string;
 };
 
-export default function EventTypeCard({ title, bestFor, vibe, why, ctaHref = "/quote", ctaLabel = "Request a quote" }: Props) {
+export default function EventTypeCard({
+  title,
+  bestFor,
+  vibe,
+  why,
+  ctaHref = "/quote",
+  ctaLabel = "Request a quote",
+  trackNumber,
+}: Props) {
   return (
-    <article className="flex h-full flex-col rounded-xl2 border border-mist/70 bg-ivory p-6 shadow-soft transition hover:border-goldsoft/40">
-      <h3 className="font-serif text-xl text-charcoal">{title}</h3>
-      <dl className="mt-4 space-y-3 text-sm text-graphite">
-        <div>
-          <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Best for</dt>
-          <dd className="mt-1 text-charcoal">{bestFor}</dd>
-        </div>
-        <div>
-          <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Vibe</dt>
-          <dd className="mt-1 text-charcoal">{vibe}</dd>
-        </div>
-        <div>
-          <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Why book</dt>
-          <dd className="mt-1 text-charcoal">{why}</dd>
-        </div>
+    <article className="liquid-glass group flex h-full flex-col rounded-[1.25rem] p-6 transition-transform duration-300 ease-out hover:-translate-y-1">
+      {trackNumber && (
+        <p className="font-heading text-2xl italic leading-none tracking-[-0.02em] text-gold">
+          {trackNumber}
+        </p>
+      )}
+      <h3
+        className={`font-heading text-2xl italic leading-tight tracking-[-0.5px] text-white md:text-3xl ${
+          trackNumber ? "mt-3" : ""
+        }`}
+      >
+        {title}
+      </h3>
+      <dl className="mt-5 flex-1 space-y-4 font-body text-sm">
+        <Row tag="Best for" body={bestFor} />
+        <Row tag="Vibe" body={vibe} />
+        <Row tag="Why book" body={why} />
       </dl>
-      <div className="mt-6 pt-2">
-        <Link
-          href={ctaHref}
-          className="inline-flex items-center text-sm font-medium text-charcoal underline-offset-4 hover:text-gold hover:underline"
-        >
-          {ctaLabel} →
-        </Link>
-      </div>
+      <Link
+        href={ctaHref}
+        className="mt-6 inline-flex items-center gap-1.5 self-start font-body text-sm font-medium text-white transition group-hover:gap-2.5"
+      >
+        {ctaLabel}
+        <ArrowUpRight className="h-4 w-4" />
+      </Link>
     </article>
+  );
+}
+
+function Row({ tag, body }: { tag: string; body: string }) {
+  return (
+    <div>
+      <dt className="text-[11px] font-medium uppercase tracking-[0.18em] text-gold">
+        {tag}
+      </dt>
+      <dd className="mt-1 text-white/85">{body}</dd>
+    </div>
+  );
+}
+
+function ArrowUpRight({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M7 17L17 7" />
+      <path d="M7 7h10v10" />
+    </svg>
   );
 }

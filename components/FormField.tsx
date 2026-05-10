@@ -9,22 +9,42 @@ type Props = {
   children: ReactNode;
 };
 
-export default function FormField({ id, label, required, hint, error, children }: Props) {
+export default function FormField({
+  id,
+  label,
+  required,
+  hint,
+  error,
+  children,
+}: Props) {
   const hintId = hint ? `${id}-hint` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium text-charcoal">
+      <label
+        htmlFor={id}
+        className="font-body text-[13px] font-medium tracking-wide text-white/85"
+      >
         {label}
-        {required && <span aria-hidden="true" className="ml-1 text-gold">*</span>}
+        {required && (
+          <span aria-hidden="true" className="ml-1 text-gold">
+            *
+          </span>
+        )}
         {required && <span className="sr-only"> (required)</span>}
       </label>
       {children}
       {hint && !error && (
-        <p id={hintId} className="text-xs text-graphite">{hint}</p>
+        <p id={hintId} className="font-body text-xs text-white/55">
+          {hint}
+        </p>
       )}
       {error && (
-        <p id={errorId} className="flex items-start gap-1.5 text-xs text-red-700" role="alert">
+        <p
+          id={errorId}
+          className="flex items-start gap-1.5 font-body text-xs text-red-300"
+          role="alert"
+        >
           <span aria-hidden="true">⚠</span>
           <span>{error}</span>
         </p>

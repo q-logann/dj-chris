@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Section from "@/components/Section";
 import QuoteForm from "@/components/QuoteForm";
+import EqBars from "@/components/EqBars";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -12,22 +12,32 @@ export const metadata: Metadata = {
 export default function QuotePage() {
   return (
     <>
-      <Section bg="ivory">
-        <p className="text-xs font-semibold uppercase tracking-wider text-gold">Quick quote</p>
-        <h1 className="mt-2 max-w-3xl font-serif text-4xl text-charcoal sm:text-5xl">
-          Tell us about your event.
-        </h1>
-        <p className="mt-4 max-w-2xl text-base text-graphite">
-          A few minutes of details so we can give you an approximate quote on this page and have
-          a real conversation about the day. {BRAND.serviceAreaLine}
-        </p>
-      </Section>
-
-      <Section>
-        <div className="mx-auto max-w-3xl rounded-xl2 border border-mist/70 bg-ivory p-6 shadow-soft sm:p-10">
-          <QuoteForm />
+      {/* Page header */}
+      <section className="relative w-full overflow-hidden bg-black text-white">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24 lg:px-20">
+          <p className="flex items-center gap-2 font-body text-[11px] uppercase tracking-[0.18em] text-gold">
+            <EqBars className="h-3 text-gold" />
+            // Quote
+          </p>
+          <h1 className="mt-5 max-w-3xl font-heading text-5xl italic leading-[0.95] tracking-[-2px] text-white md:text-7xl">
+            Tell us about your night.
+          </h1>
+          <p className="mt-6 max-w-2xl font-body text-base text-white/80 md:text-lg">
+            A few minutes of details so we can give you an approximate quote on
+            this page and have a real conversation about the day.{" "}
+            {BRAND.serviceAreaLine}
+          </p>
         </div>
-      </Section>
+      </section>
+
+      {/* Form — wrapped in a glass shell to match the dark cinematic feel */}
+      <section className="relative w-full overflow-hidden bg-black text-white">
+        <div className="mx-auto max-w-6xl px-6 pb-24 md:px-16 lg:px-20">
+          <div className="liquid-glass mx-auto max-w-3xl rounded-[1.5rem] p-6 sm:p-10">
+            <QuoteForm />
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -99,10 +99,14 @@ export default function QuoteForm() {
     return (
       <div className="space-y-6">
         <QuoteResultCard quote={quote} />
-        <div className="rounded-xl2 border border-mist/70 bg-cream p-6 text-sm text-graphite">
+        <div className="liquid-glass rounded-[1.25rem] p-6 font-body text-sm text-white/85">
           <p>
-            Thanks, <span className="font-medium text-charcoal">{state.fullName.split(" ")[0] || "and welcome"}</span>.
-            Your details are on the way to DJ Christina. Most replies come within 1–2 business days.
+            Thanks,{" "}
+            <span className="font-medium text-white">
+              {state.fullName.split(" ")[0] || "and welcome"}
+            </span>
+            . Your details are on the way to DJ Christina. Most replies come
+            within 1–2 business days.
           </p>
         </div>
       </div>
@@ -110,7 +114,7 @@ export default function QuoteForm() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-mist bg-ivory px-3.5 py-2.5 text-sm text-charcoal shadow-sm placeholder:text-graphite/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30";
+    "w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-2.5 font-body text-sm text-white placeholder:text-white/40 backdrop-blur focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20";
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-8">
@@ -129,7 +133,10 @@ export default function QuoteForm() {
       </div>
 
       {generalError && (
-        <div role="alert" className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-400/40 bg-red-500/10 p-4 font-body text-sm text-red-200"
+        >
           {generalError}
         </div>
       )}
@@ -217,7 +224,9 @@ export default function QuoteForm() {
       </fieldset>
 
       <fieldset className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <legend className="text-sm font-semibold text-charcoal">Music & notes (optional)</legend>
+        <legend className="font-body text-sm font-medium text-white">
+          // Set design (optional)
+        </legend>
 
         <FormField id="musicVibe" label="Music style / vibe">
           <input id="musicVibe" type="text" maxLength={500} value={state.musicVibe}
@@ -270,11 +279,13 @@ export default function QuoteForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center justify-center rounded-full bg-charcoal px-7 py-3 text-sm font-medium text-cream transition hover:bg-graphite disabled:cursor-not-allowed disabled:bg-graphite/60"
+          className="liquid-glass-strong inline-flex items-center justify-center rounded-full px-7 py-3 font-body text-sm font-medium text-white transition hover:bg-white/[0.06] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-transparent disabled:active:scale-100"
         >
           {status === "submitting" ? "Sending…" : "Get my approximate quote"}
         </button>
-        <p className="text-xs text-graphite">No spam. Your info goes only to DJ Christina.</p>
+        <p className="font-body text-xs text-white/55">
+          No spam. Your info goes only to DJ Christina.
+        </p>
       </div>
     </form>
   );

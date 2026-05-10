@@ -1,10 +1,17 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import Section from "@/components/Section";
 import EventTypeCard from "@/components/EventTypeCard";
 import BlogCard from "@/components/BlogCard";
+import FadingVideo from "@/components/FadingVideo";
+import EqBars from "@/components/EqBars";
 import { BRAND, EVENT_TYPES } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
+
+// PLACEHOLDER — swap for a DJ-relevant clip (lit dance floor, candle-lit
+// reception, hands at a controller). Currently a stock loop from the original
+// style prompt while we validate the FadingVideo + glass card layout.
+const CAPS_VIDEO_SRC =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4";
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
@@ -14,105 +21,243 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <Section bg="ivory">
-        <div className="grid items-start gap-10 sm:grid-cols-3">
-          <div className="sm:col-span-1">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold">About</p>
-            <h2 className="mt-3 font-serif text-3xl text-charcoal">Local DJ services planned around your event.</h2>
-          </div>
-          <div className="sm:col-span-2 sm:pt-2">
-            <p className="text-base leading-relaxed text-graphite">
-              {BRAND.name} is a local DJ serving showers, restaurants, private parties,
-              and community events. Music planned around the room, the guest list, and the moment —
-              not generic playlists. Clear communication before the day, professional setup, and a
-              microphone ready when hosts need it.
+      {/* Capabilities — dark cinematic section, three glass cards */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-black text-white">
+        <FadingVideo
+          src={CAPS_VIDEO_SRC}
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+        />
+        <div className="relative z-10 flex min-h-screen flex-col px-6 pb-12 pt-24 md:px-16 lg:px-20">
+          <div className="mb-auto">
+            <p className="mb-6 font-body text-sm text-white/80">
+              // The set
             </p>
-            <p className="mt-3 text-sm text-graphite">{BRAND.serviceAreaLine}</p>
+            <h2 className="font-heading text-5xl italic leading-[0.9] tracking-[-3px] text-white md:text-7xl lg:text-[5.5rem]">
+              Planning,
+              <br />
+              then a smooth night.
+            </h2>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {CAPABILITIES.map((c) => (
+              <CapabilityCard key={c.title} {...c} />
+            ))}
           </div>
         </div>
-      </Section>
+      </section>
 
-      <Section>
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold">Event types</p>
-            <h2 className="mt-2 font-serif text-3xl text-charcoal">A simple quote for any of these.</h2>
+      {/* Event types preview — dark, glass cards laid out like a setlist */}
+      <section className="relative w-full overflow-hidden bg-black text-white">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-16 lg:px-20">
+          <div className="mb-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
+            <div>
+              <p className="font-body text-sm text-white/70">// Set list</p>
+              <h2 className="mt-3 max-w-2xl font-heading text-4xl italic leading-[0.95] tracking-[-2px] text-white md:text-6xl">
+                A simple quote for any of these.
+              </h2>
+            </div>
+            <Link
+              href="/event-types"
+              className="group inline-flex items-center gap-2 self-start font-body text-sm font-medium text-white/90 transition hover:text-white md:self-end"
+            >
+              See all event types
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
-          <Link href="/event-types" className="hidden text-sm font-medium text-charcoal hover:text-gold sm:inline">
-            See all →
-          </Link>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {previewTypes.map((e) => (
-            <EventTypeCard key={e.key} title={e.title} bestFor={e.bestFor} vibe={e.vibe} why={e.why} />
-          ))}
-        </div>
-      </Section>
-
-      <Section bg="mist">
-        <p className="text-xs font-semibold uppercase tracking-wider text-gold">Why book DJ Christina</p>
-        <h2 className="mt-2 max-w-2xl font-serif text-3xl text-charcoal">A planning conversation, then a smooth day.</h2>
-        <ul className="mt-8 grid gap-6 sm:grid-cols-3">
-          {WHY.map((w) => (
-            <li key={w.title} className="rounded-xl2 border border-mist/70 bg-ivory p-6 shadow-soft">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gold">{w.tag}</p>
-              <h3 className="mt-2 font-serif text-lg text-charcoal">{w.title}</h3>
-              <p className="mt-2 text-sm text-graphite">{w.body}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section bg="ivory">
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold">Planning tips</p>
-            <h2 className="mt-2 font-serif text-3xl text-charcoal">Helpful reads before you book.</h2>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {previewTypes.map((e, i) => (
+              <EventTypeCard
+                key={e.key}
+                trackNumber={String(i + 1).padStart(2, "0")}
+                title={e.title}
+                bestFor={e.bestFor}
+                vibe={e.vibe}
+                why={e.why}
+              />
+            ))}
           </div>
-          <Link href="/blog" className="hidden text-sm font-medium text-charcoal hover:text-gold sm:inline">
-            All posts →
-          </Link>
         </div>
-        <div className="grid gap-5 sm:grid-cols-3">
-          {posts.map((p) => (
-            <BlogCard key={p.slug} post={p} />
-          ))}
-        </div>
-      </Section>
+      </section>
 
-      <Section>
-        <div className="rounded-xl2 border border-mist/70 bg-ivory p-8 text-center shadow-soft sm:p-14">
-          <h2 className="font-serif text-3xl text-charcoal sm:text-4xl">Tell us about your event.</h2>
-          <p className="mx-auto mt-3 max-w-xl text-graphite">
-            A simple quote form for showers, restaurants, private parties, and community events.
-            You&apos;ll get an estimate on screen and a follow-up from DJ Christina.
-          </p>
-          <Link
-            href="/quote"
-            className="mt-7 inline-flex items-center justify-center rounded-full bg-charcoal px-7 py-3 text-sm font-medium text-cream transition hover:bg-graphite"
-          >
-            Get a Quick Quote
-          </Link>
+      {/* Planning notes — dark, three blog cards */}
+      <section className="relative w-full overflow-hidden bg-black text-white">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-16 lg:px-20">
+          <div className="mb-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
+            <div>
+              <p className="font-body text-sm text-white/70">
+                // Planning notes
+              </p>
+              <h2 className="mt-3 max-w-2xl font-heading text-4xl italic leading-[0.95] tracking-[-2px] text-white md:text-6xl">
+                Helpful reads before you book.
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="group inline-flex items-center gap-2 self-start font-body text-sm font-medium text-white/90 transition hover:text-white md:self-end"
+            >
+              All posts
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {posts.map((p) => (
+              <BlogCard key={p.slug} post={p} />
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
+
+      {/* Final CTA — dramatic dark callout with EqBars + cinematic glass card */}
+      <section className="relative w-full overflow-hidden bg-black text-white">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-16 lg:px-20">
+          <div className="liquid-glass-strong relative overflow-hidden rounded-[1.5rem] px-8 py-16 text-center sm:px-14 sm:py-20">
+            <p className="flex items-center justify-center gap-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-gold">
+              <EqBars className="h-3 text-gold" />
+              Ready when you are
+            </p>
+            <h2 className="mx-auto mt-6 max-w-3xl font-heading text-5xl italic leading-[0.9] tracking-[-2px] text-white md:text-7xl">
+              Tell us about your night.
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl font-body text-base font-light text-white/80">
+              A quick form for showers, restaurants, private parties, and
+              community events. You&apos;ll see an estimate on screen and hear
+              back from {BRAND.name}.
+            </p>
+            <Link
+              href="/quote"
+              className="liquid-glass-strong group mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3 font-body text-sm font-medium text-white transition hover:bg-white/[0.06] active:scale-[0.98]"
+            >
+              Get a Quick Quote
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
 
-const WHY = [
+/* -------------------------------------------------------------------- */
+/* Capability cards — adapted from the existing WHY content. The chip   */
+/* arrays summarize what each pillar covers; the body text comes from   */
+/* the original cream-themed copy.                                      */
+/* -------------------------------------------------------------------- */
+
+type Capability = {
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+  chips: readonly string[];
+};
+
+const CAPABILITIES: readonly Capability[] = [
   {
-    tag: "Planning",
-    title: "Real conversations before the day",
-    body: "Music vibe, must-plays, do-not-plays, room layout — covered before the date, not improvised at the event.",
+    icon: <ChatIcon />,
+    title: "Read the room first",
+    chips: ["Vibe", "Must-plays", "Do-not-plays", "Layout"],
+    body: "Music vibe, must-plays, do-not-plays, and room layout — covered before the date, not improvised at the event.",
   },
   {
-    tag: "Setup",
+    icon: <SpeakerIcon />,
     title: "Clean, professional gear",
+    chips: ["Pro audio", "Tidy cables", "Right-sized", "Setup ready"],
     body: "Equipment that fits the venue without dominating it. No nightclub footprint, no tangled cables.",
   },
   {
-    tag: "Communication",
+    icon: <ClockIcon />,
     title: "Easy to reach, on time",
+    chips: ["Clear emails", "On-time arrival", "Mic ready", "Announcements"],
     body: "Clear emails, on-time arrival, and a microphone ready when hosts need it for announcements.",
   },
 ];
+
+function CapabilityCard({ icon, title, body, chips }: Capability) {
+  return (
+    <div className="liquid-glass flex min-h-[360px] flex-col rounded-[1.25rem] p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div className="liquid-glass flex h-11 w-11 items-center justify-center rounded-[0.75rem]">
+          <div className="text-white">{icon}</div>
+        </div>
+        <div className="flex max-w-[70%] flex-wrap justify-end gap-1.5">
+          {chips.map((c) => (
+            <span
+              key={c}
+              className="liquid-glass whitespace-nowrap rounded-full px-3 py-1 font-body text-[11px] text-white/90"
+            >
+              {c}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="flex-1" />
+      <div className="mt-6">
+        <h3 className="font-heading text-3xl italic leading-none tracking-[-1px] text-white md:text-4xl">
+          {title}
+        </h3>
+        <p className="mt-3 max-w-[32ch] font-body text-sm font-light leading-snug text-white/90">
+          {body}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Capability + nav icons ---------- */
+
+function ChatIcon() {
+  return (
+    <svg
+      className="h-6 w-6"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+    </svg>
+  );
+}
+
+function SpeakerIcon() {
+  return (
+    <svg
+      className="h-6 w-6"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM12 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 16c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg
+      className="h-6 w-6"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+    </svg>
+  );
+}
+
+function ArrowUpRight({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M7 17L17 7" />
+      <path d="M7 7h10v10" />
+    </svg>
+  );
+}
