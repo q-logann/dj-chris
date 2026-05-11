@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import EventTypeCard from "@/components/EventTypeCard";
 import EqBars from "@/components/EqBars";
+import SoundwaveDivider from "@/components/SoundwaveDivider";
 import { BRAND, EVENT_TYPES } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function EventTypesPage() {
       {/* Page header — dark, glass kicker, italic headline */}
       <section className="relative w-full overflow-hidden bg-black text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24 lg:px-20">
-          <p className="flex items-center gap-2 font-body text-[11px] uppercase tracking-[0.18em] text-gold">
+          <p className="flex items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.18em] text-gold">
             <EqBars className="h-3 text-gold" />
             // Event types
           </p>
@@ -30,6 +31,8 @@ export default function EventTypesPage() {
           </p>
         </div>
       </section>
+
+      <SoundwaveDivider className="bg-black" />
 
       {/* Setlist of event types — six glass cards numbered like tracks */}
       <section className="relative w-full overflow-hidden bg-black text-white">

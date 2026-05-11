@@ -31,7 +31,7 @@ export default function BlogPostPage({ params }: Params) {
         <article className="mx-auto max-w-3xl">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 font-body text-sm text-white/65 transition hover:text-white"
+            className="group inline-flex items-center gap-2 font-body text-[15px] text-white/75 transition hover:text-goldsoft"
           >
             <span className="inline-block transition-transform group-hover:-translate-x-0.5">
               ←
@@ -39,7 +39,7 @@ export default function BlogPostPage({ params }: Params) {
             All notes
           </Link>
 
-          <p className="mt-10 flex items-center gap-2 font-body text-[11px] uppercase tracking-[0.18em] text-gold">
+          <p className="mt-10 flex items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.18em] text-gold">
             <EqBars className="h-3 text-gold" />
             {formatDateLong(post.date)}
           </p>
@@ -54,12 +54,12 @@ export default function BlogPostPage({ params }: Params) {
             ))}
           </div>
 
-          <div className="liquid-glass mt-14 rounded-[1.25rem] p-6 font-body text-sm text-white/85 sm:p-8">
+          <div className="liquid-glass mt-14 rounded-[1.25rem] p-6 font-body text-[15px] text-white/90 sm:p-8">
             <p>
               Planning an event?{" "}
               <Link
                 href="/quote"
-                className="font-medium text-white underline-offset-4 hover:underline"
+                className="font-medium text-goldsoft underline-offset-4 transition hover:text-gold hover:underline"
               >
                 Get a quick quote →
               </Link>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import QuoteForm from "@/components/QuoteForm";
 import EqBars from "@/components/EqBars";
+import SoundwaveDivider from "@/components/SoundwaveDivider";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function QuotePage() {
       {/* Page header */}
       <section className="relative w-full overflow-hidden bg-black text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24 lg:px-20">
-          <p className="flex items-center gap-2 font-body text-[11px] uppercase tracking-[0.18em] text-gold">
+          <p className="flex items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.18em] text-gold">
             <EqBars className="h-3 text-gold" />
             // Quote
           </p>
@@ -29,6 +30,8 @@ export default function QuotePage() {
           </p>
         </div>
       </section>
+
+      <SoundwaveDivider className="bg-black" />
 
       {/* Form — wrapped in a glass shell to match the dark cinematic feel */}
       <section className="relative w-full overflow-hidden bg-black text-white">

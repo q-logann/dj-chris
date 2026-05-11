@@ -133,7 +133,7 @@ function GlassHeader() {
                   key={l.href}
                   href={l.href}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-full px-3 py-2 font-body text-sm font-medium transition ${
+                  className={`rounded-full px-3 py-2 font-body text-[15px] font-medium transition-all duration-200 ${
                     active
                       ? navLinkActiveBg
                       : `${textSecondary} ${textHover} ${navLinkHoverBg}`
@@ -149,10 +149,10 @@ function GlassHeader() {
           <div className="flex items-center gap-2">
             <Link
               href="/quote"
-              className={`hidden items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 font-body text-sm font-medium transition md:inline-flex ${ctaButton}`}
+              className={`group hidden items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 font-body text-[15px] font-medium transition-all duration-200 ease-out md:inline-flex motion-safe:hover:scale-[1.02] motion-safe:active:scale-[0.98] hover:shadow-[0_8px_32px_rgba(168,133,75,0.15)] ${ctaButton}`}
             >
               Get a Quote
-              <ArrowUpRight className="h-4 w-4 transition-transform" />
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <button
               type="button"
@@ -195,7 +195,7 @@ function GlassHeader() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="fixed left-4 right-4 top-20 z-50 md:hidden"
+          className="fixed left-4 right-4 top-20 z-50 origin-top motion-safe:animate-[mobile-menu-in_200ms_ease-out_both] md:hidden"
         >
           <ul className={`flex flex-col gap-1 rounded-2xl p-3 ${containerBg}`}>
             {NAV_LINKS.map((l) => {
@@ -206,7 +206,7 @@ function GlassHeader() {
                     href={l.href}
                     onClick={() => setOpen(false)}
                     aria-current={active ? "page" : undefined}
-                    className={`block rounded-full px-4 py-2 font-body text-base transition ${
+                    className={`block rounded-full px-4 py-2 font-body text-base transition-colors ${
                       active ? navLinkActiveBg : `${textPrimary} ${navLinkHoverBg}`
                     }`}
                   >

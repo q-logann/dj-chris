@@ -23,7 +23,7 @@ export default function FormField({
     <div className="flex flex-col gap-1.5">
       <label
         htmlFor={id}
-        className="font-body text-[13px] font-medium tracking-wide text-white/85"
+        className="font-body text-[15px] font-medium tracking-wide text-white/90"
       >
         {label}
         {required && (
@@ -35,14 +35,14 @@ export default function FormField({
       </label>
       {children}
       {hint && !error && (
-        <p id={hintId} className="font-body text-xs text-white/55">
+        <p id={hintId} className="font-body text-[13px] text-white/65">
           {hint}
         </p>
       )}
       {error && (
         <p
           id={errorId}
-          className="flex items-start gap-1.5 font-body text-xs text-red-300"
+          className="flex items-start gap-1.5 font-body text-[13px] text-red-300"
           role="alert"
         >
           <span aria-hidden="true">⚠</span>

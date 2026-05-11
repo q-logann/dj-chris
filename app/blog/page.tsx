@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BlogCard from "@/components/BlogCard";
 import EqBars from "@/components/EqBars";
+import SoundwaveDivider from "@/components/SoundwaveDivider";
 import { BRAND } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
 
@@ -17,7 +18,7 @@ export default function BlogIndexPage() {
       {/* Page header — dark, glass kicker, italic headline */}
       <section className="relative w-full overflow-hidden bg-black text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24 lg:px-20">
-          <p className="flex items-center gap-2 font-body text-[11px] uppercase tracking-[0.18em] text-gold">
+          <p className="flex items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.18em] text-gold">
             <EqBars className="h-3 text-gold" />
             // Planning notes
           </p>
@@ -30,6 +31,8 @@ export default function BlogIndexPage() {
           </p>
         </div>
       </section>
+
+      <SoundwaveDivider className="bg-black" />
 
       {/* Notes grid */}
       <section className="relative w-full overflow-hidden bg-black text-white">

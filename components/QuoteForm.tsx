@@ -97,9 +97,9 @@ export default function QuoteForm() {
 
   if (status === "success" && quote) {
     return (
-      <div className="space-y-6">
+      <div className="motion-safe:animate-[page-fade_0.45s_ease-out_both] space-y-6">
         <QuoteResultCard quote={quote} />
-        <div className="liquid-glass rounded-[1.25rem] p-6 font-body text-sm text-white/85">
+        <div className="liquid-glass rounded-[1.25rem] p-6 font-body text-[15px] text-white/85">
           <p>
             Thanks,{" "}
             <span className="font-medium text-white">
@@ -114,7 +114,7 @@ export default function QuoteForm() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-2.5 font-body text-sm text-white placeholder:text-white/40 backdrop-blur focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20";
+    "w-full rounded-lg border border-white/15 bg-white/5 px-3.5 py-2.5 font-body text-[15px] text-white placeholder:text-white/50 backdrop-blur focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20";
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-8">
@@ -224,7 +224,7 @@ export default function QuoteForm() {
       </fieldset>
 
       <fieldset className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <legend className="font-body text-sm font-medium text-white">
+        <legend className="font-body text-[15px] font-medium text-white">
           // Set design (optional)
         </legend>
 
@@ -279,11 +279,13 @@ export default function QuoteForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="liquid-glass-strong inline-flex items-center justify-center rounded-full px-7 py-3 font-body text-sm font-medium text-white transition hover:bg-white/[0.06] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-transparent disabled:active:scale-100"
+          className={`liquid-glass-strong inline-flex items-center justify-center rounded-full px-7 py-3 font-body text-[15px] font-medium text-white transition-all duration-200 ease-out hover:bg-white/[0.06] hover:shadow-[0_8px_32px_rgba(168,133,75,0.10)] motion-safe:hover:scale-[1.02] motion-safe:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:shadow-none motion-safe:disabled:hover:scale-100 motion-safe:disabled:active:scale-100 ${
+            status === "submitting" ? "motion-safe:animate-pulse" : ""
+          }`}
         >
           {status === "submitting" ? "Sending…" : "Get my approximate quote"}
         </button>
-        <p className="font-body text-xs text-white/55">
+        <p className="font-body text-[13px] text-white/65">
           No spam. Your info goes only to DJ Christina.
         </p>
       </div>

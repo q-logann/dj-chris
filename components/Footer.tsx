@@ -21,12 +21,12 @@ export default function Footer() {
               <p className="font-heading text-3xl italic leading-none tracking-[-0.02em] text-white">
                 {BRAND.name}
               </p>
-              <p className="mt-1.5 font-body text-xs uppercase tracking-[0.18em] text-white/55">
+              <p className="mt-1.5 font-body text-[12px] uppercase tracking-[0.18em] text-white/65">
                 {BRAND.serviceAreaShort}
               </p>
             </div>
           </div>
-          <p className="mt-6 flex items-center gap-2 font-body text-sm text-white/70">
+          <p className="mt-6 flex items-center gap-2 font-body text-[15px] text-white/80">
             <EqBars className="h-3 text-gold" />
             Now booking — showers, restaurants, private events
           </p>
@@ -34,7 +34,7 @@ export default function Footer() {
 
         {/* Quick links */}
         <div className="md:col-span-3">
-          <p className="font-body text-[11px] uppercase tracking-[0.18em] text-white/55">
+          <p className="font-body text-[12px] uppercase tracking-[0.18em] text-white/70">
             // Quick links
           </p>
           <ul className="mt-4 space-y-2.5">
@@ -42,7 +42,7 @@ export default function Footer() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="font-body text-sm text-white/85 transition hover:text-white"
+                  className="font-body text-[15px] text-white/90 transition hover:text-goldsoft"
                 >
                   {l.label}
                 </Link>
@@ -53,15 +53,15 @@ export default function Footer() {
 
         {/* Contact */}
         <div className="md:col-span-4">
-          <p className="font-body text-[11px] uppercase tracking-[0.18em] text-white/55">
+          <p className="font-body text-[12px] uppercase tracking-[0.18em] text-white/70">
             // Contact
           </p>
           {/* PLACEHOLDER contact info — replace in lib/constants.ts */}
-          <ul className="mt-4 space-y-2.5 font-body text-sm text-white/85">
+          <ul className="mt-4 space-y-2.5 font-body text-[15px] text-white/90">
             <li>
               <a
                 href={`tel:${BRAND.publicPhone.replace(/\D/g, "")}`}
-                className="transition hover:text-white"
+                className="transition hover:text-goldsoft"
               >
                 {BRAND.publicPhone}
               </a>
@@ -69,13 +69,13 @@ export default function Footer() {
             <li>
               <a
                 href={`mailto:${BRAND.publicEmail}`}
-                className="transition hover:text-white"
+                className="transition hover:text-goldsoft"
               >
                 {BRAND.publicEmail}
               </a>
             </li>
             <li>
-              <span className="text-white/65">{BRAND.instagram}</span>
+              <span className="text-white/70">{BRAND.instagram}</span>
             </li>
           </ul>
         </div>
@@ -83,11 +83,13 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-6 py-6 font-body text-xs text-white/55 sm:flex-row sm:items-center sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-6 py-6 font-body text-[13px] text-white/65 sm:flex-row sm:items-center sm:px-8">
           <p>
             © {new Date().getFullYear()} {BRAND.name}. {BRAND.serviceAreaLine}
           </p>
-          <p className="text-white/40">Music for the moments people remember.</p>
+          <p className="italic text-taupe/80">
+            Music for the moments people remember.
+          </p>
         </div>
       </div>
     </footer>

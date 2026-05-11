@@ -13,7 +13,7 @@ const HERO_VIDEO_SRC =
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[720px] w-full overflow-hidden bg-black text-white">
+    <section className="relative min-h-screen w-full overflow-hidden bg-black text-white md:h-screen md:min-h-[720px]">
       {/* Background video — full bleed, top-aligned, slightly oversized */}
       <FadingVideo
         src={HERO_VIDEO_SRC}
@@ -29,10 +29,10 @@ export default function Hero() {
             className="liquid-glass inline-flex items-center gap-2 rounded-full pr-4 opacity-0"
             style={{ animation: "fade-blur-up 0.7s 0.4s ease-out both" }}
           >
-            <span className="rounded-full bg-white px-3 py-1 font-body text-xs font-semibold text-black">
+            <span className="rounded-full bg-white px-3 py-1 font-body text-[13px] font-semibold text-black">
               New
             </span>
-            <span className="font-body text-sm text-white/90">
+            <span className="font-body text-[15px] text-white">
               Now booking — Lawrenceville &amp; Suwanee
             </span>
             <EqBars className="h-3 text-gold" />
@@ -47,7 +47,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <p
-            className="mt-4 max-w-2xl font-body text-sm font-light leading-tight text-white opacity-0 md:text-base"
+            className="mt-4 max-w-2xl font-body text-[15px] font-light leading-snug text-white opacity-0 md:text-base"
             style={{ animation: "fade-blur-up 0.7s 0.8s ease-out both" }}
           >
             Professional DJ services for baby showers, restaurants, birthdays,
@@ -57,19 +57,19 @@ export default function Hero() {
 
           {/* CTAs */}
           <div
-            className="mt-6 flex items-center gap-6 opacity-0"
+            className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 opacity-0"
             style={{ animation: "fade-blur-up 0.7s 1.1s ease-out both" }}
           >
             <Link
               href="/quote"
-              className="liquid-glass-strong group inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-medium text-white transition hover:bg-white/[0.06] active:scale-[0.98]"
+              className="liquid-glass-strong group inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-[15px] font-medium text-white transition-all duration-200 ease-out hover:bg-white/[0.06] hover:shadow-[0_8px_32px_rgba(168,133,75,0.12)] motion-safe:hover:scale-[1.02] motion-safe:active:scale-[0.98]"
             >
               Get a Quick Quote
               <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <Link
               href="/event-types"
-              className="group inline-flex items-center gap-2 font-body text-sm font-medium text-white/90 transition hover:text-white"
+              className="group inline-flex items-center gap-2 font-body text-[15px] font-medium text-white/90 transition hover:text-white"
             >
               View Event Types
               <Play className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -78,7 +78,7 @@ export default function Hero() {
 
           {/* Stats — honest numbers from lib/constants.ts (no fabricated metrics) */}
           <div
-            className="mt-8 flex flex-wrap items-stretch justify-center gap-4 opacity-0"
+            className="mt-8 flex w-full flex-col items-center justify-center gap-4 opacity-0 sm:w-auto sm:flex-row sm:flex-wrap sm:items-stretch"
             style={{ animation: "fade-blur-up 0.7s 1.3s ease-out both" }}
           >
             <StatCard
@@ -94,26 +94,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Communities served — replaces the "partners" row from the original
-            prompt with real cities. */}
-        <div
-          className="flex flex-col items-center gap-4 px-4 pb-8 opacity-0"
-          style={{ animation: "fade-blur-up 0.7s 1.4s ease-out both" }}
-        >
-          <span className="liquid-glass rounded-full px-3.5 py-1 font-body text-xs font-medium text-white">
-            Serving nearby communities
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
-            {BRAND.cityFocus.map((c) => (
-              <span
-                key={c}
-                className="font-heading text-2xl italic tracking-tight text-white md:text-3xl"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -129,13 +109,13 @@ function StatCard({
   label: string;
 }) {
   return (
-    <div className="liquid-glass flex w-[220px] flex-col gap-3 rounded-[1.25rem] p-5 text-left">
+    <div className="liquid-glass flex w-full max-w-[260px] flex-col gap-3 rounded-[1.25rem] p-5 text-left sm:w-[220px]">
       <div className="text-white">{icon}</div>
       <div>
         <div className="font-heading text-4xl italic leading-none tracking-[-1px] text-white">
           {number}
         </div>
-        <div className="mt-2 font-body text-xs font-light text-white">
+        <div className="mt-2 font-body text-[13px] font-light text-white/85">
           {label}
         </div>
       </div>

@@ -6,3 +6,8 @@ out
 .env*.local
 .DS_Store
 *.log
+
+# Playwright artifacts (transient — regenerated on each run)
+test-results
+playwright-report
+playwright/.cache
