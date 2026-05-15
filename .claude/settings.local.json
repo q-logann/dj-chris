@@ -4,7 +4,20 @@
       "Bash(mkdir -p /Users/logan/Downloads/dj-christina/.claude)",
       "mcp__Claude_Preview__preview_start",
       "Bash(npm install *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "mcp__bb834d5b-ba8f-4d6f-b959-7fa4b68b677b__deploy_to_vercel",
+      "Bash(npx vercel *)",
+      "Bash(grep -oE '\\(\"[^\"]{15,120}\"\\)' /Users/logan/.claude/projects/-Users-logan-Downloads-dj-christina/70b10005-8b1c-4b62-8ef1-b3b550443291/tool-results/toolu_016aGPFNZrifhSYszeMjUAG5.json)",
+      "Bash(git ls-remote *)",
+      "Bash(npx playwright *)",
+      "Bash(sort -k2)",
+      "Bash(node audit/probe.mjs)",
+      "Bash(node -e ' *)",
+      "Bash(node audit/probe.mjs --base=http://localhost:3000)",
+      "Bash(node audit/run-screenshots.mjs --after --base=http://localhost:3000)",
+      "Bash(PLAYWRIGHT_BASE_URL=http://localhost:3000 npx playwright test)",
+      "mcp__bb834d5b-ba8f-4d6f-b959-7fa4b68b677b__list_deployments",
+      "Bash(ls -la ~/.claude/launch.json 2>/dev/null || echo \"no global launch.json\"; echo \"---\"; stat -f \"%Sp %z %Sm\" /Users/logan/Downloads/dj-christina/.claude/launch.json 2>&1; echo \"---\"; cat /Users/logan/Downloads/dj-christina/.claude/launch.json)"
     ]
   }
 }

@@ -4,12 +4,10 @@
 export const BRAND = {
   name: "DJ Christina",
   tagline: "Music for the moments people remember.",
-  // PLACEHOLDER — replace with mom's preferred public-facing email label
-  publicEmail: "hello@djchristina.example",
-  // PLACEHOLDER — replace with mom's public phone number
-  publicPhone: "(770) 555-0123",
+  publicEmail: "Coachchristinapybstrong@gmail.com",
+  publicPhone: "(404) 931-7087",
   // PLACEHOLDER — replace with mom's Instagram handle (or remove the link in Footer)
-  instagram: "@dj.christina.placeholder",
+  instagram: "@madisongoneham",
   serviceAreaLine:
     "Serving Lawrenceville, Suwanee, and nearby communities within about 25 miles.",
   serviceAreaShort: "Lawrenceville · Suwanee · 25-mile radius",
