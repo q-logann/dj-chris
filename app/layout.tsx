@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Barlow } from "next/font/google";
+import { BotIdClient } from "botid/client";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageFade from "@/components/PageFade";
 import { SITE_METADATA } from "@/lib/constants";
+
+const botIdProtectedRoutes = [{ path: "/api/inquiry", method: "POST" as const }];
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -37,6 +40,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${barlow.variable}`}>
+      <head>
+        <BotIdClient protect={botIdProtectedRoutes} />
+      </head>
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"

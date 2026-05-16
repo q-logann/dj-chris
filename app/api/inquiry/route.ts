@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkBotId } from "botid/server";
 import { validateInquiry } from "@/lib/validation";
 import { calculateQuote } from "@/lib/quote";
 import { sendInquiryEmail } from "@/lib/email";
@@ -7,6 +8,15 @@ import type { InquiryApiResponse } from "@/types/inquiry";
 export const runtime = "nodejs";
 
 export async function POST(req: Request): Promise<NextResponse<InquiryApiResponse>> {
+  const verification = await checkBotId();
+  if (verification.isBot) {
+    // Mirror the honeypot path — silent success so bots get no signal.
+    return NextResponse.json(
+      { success: false, error: "Thank you." },
+      { status: 200 }
+    );
+  }
+
   let json: unknown;
   try {
     json = await req.json();
